@@ -1,0 +1,19 @@
+{
+  "name": "movies-service",
+  "version": "0.0.0",
+  "description": "A movies service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanzmiguel/movies-service.git"
+  },
+  "author": "sanzmiguel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanzmiguel/movies-service/issues"
+  },
+  "homepage": "https://github.com/sanzmiguel/movies-service#readme"
+}
