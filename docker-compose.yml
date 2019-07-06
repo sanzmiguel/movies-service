@@ -1,0 +1,21 @@
+version: "3"
+services:
+  redis:
+    container_name: service_redis
+    image: redis:latest
+    volumes:
+      - ~/datadir/redis:/var/lib/redis
+    ports:
+      - 6379:6379
+  api:
+    container_name: service_api
+    build: .
+    image: service_api
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - redis
