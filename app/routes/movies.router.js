@@ -4,11 +4,18 @@ const moviesDomain = require('../domain/movies');
 
 const router = express.Router();
 
-const getMovies = (req, res) => {
-  const movies = moviesDomain.getMovies();
-  res.status(httpStatus.OK).send({ data: movies, status: httpStatus.OK });
+const getMovies = async (req, res) => {
+  const movies = await moviesDomain.getMovies();
+  res.status(httpStatus.OK).send({ data: movies });
+};
+
+const addMovie = async (req, res) => {
+  const { movie } = req.body;
+  await moviesDomain.addMovie(movie);
+  res.status(httpStatus.NO_CONTENT).send();
 };
 
 router.get('/', getMovies);
+router.post('/', addMovie);
 
 module.exports = router;
