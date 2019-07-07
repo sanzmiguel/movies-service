@@ -12,7 +12,8 @@ services:
     build: .
     image: service_api
     volumes:
-      - ./:/usr/src/app
+      - .:/usr/src/app
+      - /usr/app/node_modules
     ports:
       - 3000:3000
       - 9229:9229
