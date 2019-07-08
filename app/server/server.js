@@ -2,6 +2,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const routes = require('../routes');
 const redisTools = require('../tools/redis');
+const logger = require('../tools/logger');
 
 const createServer = () => {
   const app = express();
@@ -17,8 +18,11 @@ const launchServer = async () => {
   const app = createServer(routes);
   try {
     await redisTools.init();
+    logger.info('Redis is initialized');
     await app.listen(port);
+    logger.info(`Server listening in port ${port}`);
   } catch (error) {
+    logger.error('Error launching server', error);
     throw new Error(error);
   }
 };
