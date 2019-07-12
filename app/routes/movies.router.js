@@ -1,6 +1,8 @@
 const express = require('express');
 const httpStatus = require('http-status');
 const moviesDomain = require('../domain/movies');
+const moviesSchema = require('./schemas/movies');
+const validationMiddleware = require('./middlewares/validation');
 
 const router = express.Router();
 
@@ -20,6 +22,6 @@ const addMovie = async (req, res) => {
 };
 
 router.get('/', getMovies);
-router.post('/', addMovie);
+router.post('/', validationMiddleware(moviesSchema), addMovie);
 
 module.exports = router;
