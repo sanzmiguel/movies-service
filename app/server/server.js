@@ -3,12 +3,14 @@ const bodyparser = require('body-parser');
 const routes = require('../routes');
 const redisTools = require('../tools/redis');
 const logger = require('../tools/logger');
+const errorHandler = require('../tools/errors/handler');
 
 const createServer = () => {
   const app = express();
   app.use(bodyparser.urlencoded({ extended: true }));
   app.use(bodyparser.json());
   app.use('/', routes);
+  app.use(errorHandler);
 
   return app;
 };
