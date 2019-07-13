@@ -4,6 +4,7 @@ const routes = require('../routes');
 const redisTools = require('../tools/redis');
 const logger = require('../tools/logger');
 const errorHandler = require('../tools/errors/handler');
+const kafkaManager = require('../tools/kafka/manager');
 
 const createServer = () => {
   const app = express();
@@ -21,6 +22,8 @@ const launchServer = async () => {
   try {
     await redisTools.init();
     logger.info('Redis is initialized');
+    await kafkaManager.setup();
+    logger.info('Kafka is setup');
     await app.listen(port);
     logger.info(`Server listening in port ${port}`);
   } catch (error) {
